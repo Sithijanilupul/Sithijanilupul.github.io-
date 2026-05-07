@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experience — Sithja Vithanage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+/* ── EDUCATION SECTION ── */
+.edu-section { padding: 80px 0 60px; }
+.edu-cards { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
+.edu-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 36px;
+  display: grid; grid-template-columns: 56px 1fr auto;
+  gap: 24px; align-items: start;
+  transition: transform 0.25s, border-color 0.25s;
+}
+.edu-card:hover { transform: translateX(6px); border-color: var(--accent)40; }
+.edu-icon { width: 56px; height: 56px; border-radius: 14px; background: var(--accent)12; display: flex; align-items: center; justify-content: center; font-size: 24px; flex-shrink: 0; }
+.edu-degree { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: -0.3px; margin-bottom: 5px; }
+.edu-school { font-size: 14px; color: var(--text-muted); margin-bottom: 12px; font-weight: 500; }
+.edu-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+.edu-year { font-size: 12px; font-weight: 700; color: var(--accent); background: var(--accent)12; padding: 6px 16px; border-radius: 100px; white-space: nowrap; height: fit-content; }
+
+/* ── SKILLS BARS ── */
+.skills-section { padding: 80px 0; background: var(--bg2); }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 56px; }
+.skill-group-title { font-size: 15px; font-weight: 600; margin-bottom: 28px; display: flex; align-items: center; gap: 8px; }
+.skill-group-icon { font-size: 18px; }
+.skill-bars { display: flex; flex-direction: column; gap: 20px; }
+.skill-bar-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.skill-bar-name { font-size: 14px; font-weight: 500; }
+.skill-bar-pct { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+.skill-bar-track { height: 5px; background: var(--surface2); border-radius: 100px; overflow: hidden; }
+.skill-bar-fill { height: 100%; border-radius: 100px; background: var(--accent); width: 0%; transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.skill-bar-fill.animated { width: var(--w); }
+
+/* ── CERTS ── */
+.cert-section { padding: 80px 0; }
+.cert-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.cert-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.cert-card:hover { transform: translateY(-5px); border-color: var(--accent)40; }
+.cert-icon { font-size: 32px; }
+.cert-name { font-weight: 600; font-size: 15px; line-height: 1.4; }
+.cert-issuer { font-size: 13px; color: var(--text-muted); }
+.cert-badge { font-size: 11px; font-weight: 700; color: var(--accent); background: var(--accent)12; padding: 3px 10px; border-radius: 100px; width: fit-content; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── FULL TIMELINE ── */
+.timeline-section { padding: 80px 0; background: var(--bg2); }
+.timeline { position: relative; margin-top: 56px; padding-left: 36px; }
+.timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+.tl-item { position: relative; margin-bottom: 44px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: -40px; top: 6px;
+  width: 12px; height: 12px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--bg);
+  box-shadow: 0 0 0 3px var(--accent)25;
+}
+.tl-dot.green { background: var(--accent3); box-shadow: 0 0 0 3px var(--accent3)25; }
+.tl-dot.red { background: var(--accent2); box-shadow: 0 0 0 3px var(--accent2)25; }
+.tl-dot.muted { background: var(--text-subtle); box-shadow: none; }
+.tl-year { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 6px; }
+.tl-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+.tl-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
+.tl-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+.tl-bullets { list-style: none; margin-top: 10px; display: flex; flex-direction: column; gap: 7px; }
+.tl-bullets li { display: flex; gap: 10px; font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+.tl-bullets li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent3); margin-top: 7px; flex-shrink: 0; }
+
+/* ── EXTRA ── */
+.extra-section { padding: 80px 0; }
+.extra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; }
+.extra-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.extra-card:hover { transform: translateY(-4px); border-color: var(--accent)40; }
+.extra-emoji { font-size: 32px; margin-bottom: 14px; }
+.extra-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.extra-period { font-size: 12px; font-weight: 600; color: var(--accent); background: var(--accent)10; padding: 3px 10px; border-radius: 100px; display: inline-block; margin-bottom: 12px; }
+.extra-desc { font-size: 13px; color: var(--text-muted); line-height: 1.65; font-weight: 300; }
+
+/* ── LANGUAGES ── */
+.lang-section { padding: 80px 0; background: var(--bg2); }
+.lang-grid { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 48px; }
+.lang-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 28px 36px;
+  display: flex; align-items: center; gap: 16px;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.lang-card:hover { transform: translateY(-3px); border-color: var(--accent)40; }
+.lang-flag { font-size: 36px; }
+.lang-name { font-weight: 600; font-size: 17px; margin-bottom: 3px; }
+.lang-level { font-size: 13px; color: var(--text-muted); }
+
+/* ── REFERENCE ── */
+.ref-section { padding: 80px 0; }
+.ref-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 36px;
+  display: flex; align-items: center; gap: 28px;
+  max-width: 500px;
+  transition: transform 0.2s;
+}
+.ref-card:hover { transform: translateY(-4px); }
+.ref-avatar {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 22px; color: white; flex-shrink: 0;
+}
+.ref-name { font-weight: 600; font-size: 17px; margin-bottom: 3px; }
+.ref-role { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+.ref-contact { display: flex; flex-direction: column; gap: 4px; }
+.ref-contact a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+.ref-contact a:hover { color: var(--accent); }
+
+@media(max-width: 900px) {
+  .edu-card { grid-template-columns: 1fr; gap: 12px; }
+  .skills-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cert-grid { grid-template-columns: 1fr 1fr; }
+  .extra-grid { grid-template-columns: 1fr 1fr; }
+}
+@media(max-width: 600px) {
+  .cert-grid, .extra-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Sithja<span>.</span>V</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html">Projects</a></li>
+      <li><a href="experience.html" class="active">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-nav">Hire Me</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <div class="toggle-thumb"><span id="toggleIcon">☀️</span></div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-orb page-hero-orb1"></div>
+  <div class="page-hero-orb page-hero-orb2"></div>
+  <div class="page-hero-content">
+    <span class="page-hero-tag">Background</span>
+    <h1 class="page-hero-title">Education &<br><em>Experience</em></h1>
+    <p class="page-hero-sub">My academic journey, technical skill levels, certifications, timeline of projects, and extra-curricular activities that define my path in cybersecurity.</p>
+  </div>
+</div>
+
+<!-- EDUCATION -->
+<section class="edu-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Education</div>
+      <h2 class="section-title">Academic Background</h2>
+    </div>
+    <div class="edu-cards">
+      <div class="edu-card reveal">
+        <div class="edu-icon">🎓</div>
+        <div>
+          <div class="edu-degree">BSc (Hons) Information Technology — Specialised in Cyber Security</div>
+          <div class="edu-school">Sri Lanka Institute of Information Technology (SLIIT), Sri Lanka</div>
+          <p class="edu-desc">Currently pursuing a 4-year degree specializing in Cyber Security. Relevant coursework includes Network Security, Ethical Hacking, Digital Forensics, Risk Management, and Secure Software Development. Projects span SIEM labs, secure protocol implementation, AI/ML systems, and full-stack applications.</p>
+        </div>
+        <span class="edu-year">2024 – 2028</span>
+      </div>
+      <div class="edu-card reveal reveal-d1">
+        <div class="edu-icon">📚</div>
+        <div>
+          <div class="edu-degree">G.C.E Advanced Level (A/L)</div>
+          <div class="edu-school">Taxila Central College, Horana</div>
+          <p class="edu-desc">Completed Advanced Level studies, building a strong analytical and scientific foundation essential for a technical career in cybersecurity and information technology.</p>
+        </div>
+        <span class="edu-year">2021 – 2023</span>
+      </div>
+      <div class="edu-card reveal reveal-d2">
+        <div class="edu-icon">🏫</div>
+        <div>
+          <div class="edu-degree">G.C.E Ordinary Level (O/L)</div>
+          <div class="edu-school">Taxila Central College, Horana</div>
+          <p class="edu-desc">Completed Ordinary Level examinations at Taxila Central College. Served as School Prefect during this period, developing early leadership and communication skills.</p>
+        </div>
+        <span class="edu-year">2019 – 2020</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS BARS -->
+<section class="skills-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Proficiency</div>
+      <h2 class="section-title">Technical Skill Levels</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="reveal">
+        <div class="skill-group-title"><span class="skill-group-icon">🛡️</span> Security & Networking</div>
+        <div class="skill-bars">
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Linux</span><span class="skill-bar-pct">85%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:85%"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Wireshark</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:80%"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Azure Sentinel / SIEM</span><span class="skill-bar-pct">75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:75%"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Threat Analysis & Risk Assessment</span><span class="skill-bar-pct">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:78%"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Vulnerability Scanning</span><span class="skill-bar-pct">72%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:72%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-d1">
+        <div class="skill-group-title"><span class="skill-group-icon">💻</span> Programming & Development</div>
+        <div class="skill-bars">
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Python</span><span class="skill-bar-pct">82%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:82%;background:var(--accent3)"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">Java / Spring Boot</span><span class="skill-bar-pct">80%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:80%;background:var(--accent3)"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">C (Systems Programming)</span><span class="skill-bar-pct">75%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:75%;background:var(--accent3)"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">TensorFlow / Deep Learning</span><span class="skill-bar-pct">72%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:72%;background:var(--accent3)"></div></div>
+          </div>
+          <div>
+            <div class="skill-bar-top"><span class="skill-bar-name">MySQL / SQL</span><span class="skill-bar-pct">78%</span></div>
+            <div class="skill-bar-track"><div class="skill-bar-fill" style="--w:78%;background:var(--accent3)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Credentials</div>
+      <h2 class="section-title">Certifications</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal">
+        <div class="cert-icon">🔐</div>
+        <div class="cert-name">Introduction to Cybersecurity</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <div class="cert-badge">Cybersecurity</div>
+      </div>
+      <div class="cert-card reveal reveal-d1">
+        <div class="cert-icon">🌐</div>
+        <div class="cert-name">Networking Basics</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+        <div class="cert-badge">Networking</div>
+      </div>
+      <div class="cert-card reveal reveal-d2">
+        <div class="cert-icon">🤖</div>
+        <div class="cert-name">AI/ML Engineer — Stage 1 Certificate</div>
+        <div class="cert-issuer">AI & Machine Learning Program</div>
+        <div class="cert-badge">AI / ML</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FULL TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Journey</div>
+      <h2 class="section-title">Full Timeline</h2>
+    </div>
+    <div class="timeline reveal">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">April 2026 — Present</div>
+        <div class="tl-title">Azure Sentinel RDP Attack Detection Lab</div>
+        <div class="tl-sub">🛡️ Cyber Security Project · Personal</div>
+        <p class="tl-desc">Built a cloud SIEM lab on Azure Sentinel. Used PowerShell to parse Windows Event Logs, enriched attacker IPs with geolocation data, and visualized real-time RDP brute-force attacks.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-year">March 2026 — Present</div>
+        <div class="tl-title">Secure Multiprocess TCP Server with Custom Protocol</div>
+        <div class="tl-sub">🔒 Cyber Security Project · Personal</div>
+        <p class="tl-desc">Secure multi-client TCP server in C with SHA-256 authentication, session tokens, rate limiting, brute-force protection, and full audit logging for 10+ concurrent clients.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-year">Jul – Oct 2025</div>
+        <div class="tl-title">Pneumonia Detection Using Deep Learning</div>
+        <div class="tl-sub">🤖 AI / ML Project · Associated with SLIIT</div>
+        <p class="tl-desc">ResNet50 deep learning model detecting pneumonia from chest X-rays. Compared VGG, ResNet50, Inception, and DenseNet. Used Grad-CAM for model interpretation.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="tl-year">Jul – Oct 2025</div>
+        <div class="tl-title">SkyLink Airline Reservation System</div>
+        <div class="tl-sub">✈️ Web Development Project · Associated with SLIIT</div>
+        <p class="tl-desc">Full airline reservation system with Spring Boot, Spring Security, Thymeleaf, MySQL, role-based access control, and a simulated payment gateway.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="tl-year">Feb – Jun 2025</div>
+        <div class="tl-title">Hotel Room Management System</div>
+        <div class="tl-sub">🏨 Web Development Project · Associated with SLIIT</div>
+        <p class="tl-desc">Java Servlet + JSP hotel management system with booking, check-in/out, customer management, and file-based CRUD data persistence.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot muted"></div>
+        <div class="tl-year">2024 — Present</div>
+        <div class="tl-title">BSc (Hons) IT — Cyber Security · SLIIT</div>
+        <div class="tl-sub">🎓 Education · Undergraduate Degree</div>
+        <p class="tl-desc">Pursuing a 4-year degree in Information Technology specializing in Cyber Security at Sri Lanka Institute of Information Technology (SLIIT), Colombo.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot green"></div>
+        <div class="tl-year">2024 — Present</div>
+        <div class="tl-title">Campus Ambassador — Leo Club, SLIIT</div>
+        <div class="tl-sub">🦁 Club Activity · SLIIT</div>
+        <p class="tl-desc">Supported the "Vidu Hastha" astronomy workshop — guided telescope construction and engaged 500+ students, promoting STEM and leadership development.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot muted"></div>
+        <div class="tl-year">2021 – 2023</div>
+        <div class="tl-title">G.C.E Advanced Level (A/L)</div>
+        <div class="tl-sub">📚 Education · Taxila Central College, Horana</div>
+        <p class="tl-desc">Completed Advanced Level studies building an analytical and scientific foundation for a career in cybersecurity and technology.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot red"></div>
+        <div class="tl-year">2019 – 2021</div>
+        <div class="tl-title">School Prefect</div>
+        <div class="tl-sub">🏫 Extra-Curricular · Taxila Central College, Horana</div>
+        <p class="tl-desc">Served as School Prefect, taking on leadership and responsibility roles and developing strong communication skills within the school community.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot muted"></div>
+        <div class="tl-year">2019 – 2020</div>
+        <div class="tl-title">G.C.E Ordinary Level (O/L)</div>
+        <div class="tl-sub">🏫 Education · Taxila Central College, Horana</div>
+        <p class="tl-desc">Completed O/L examinations at Taxila Central College, Horana.</p>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot muted"></div>
+        <div class="tl-year">2016 – 2019</div>
+        <div class="tl-title">Junior Member — Police Life Saving Team</div>
+        <div class="tl-sub">🚔 Extra-Curricular</div>
+        <p class="tl-desc">Active Junior Member of the Police Life Saving Team, building discipline, teamwork, and community service values from an early age.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXTRA ACTIVITIES -->
+<section class="extra-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Activities</div>
+      <h2 class="section-title">Extra-Curricular</h2>
+    </div>
+    <div class="extra-grid">
+      <div class="extra-card reveal">
+        <div class="extra-emoji">🏫</div>
+        <div class="extra-title">School Prefect</div>
+        <span class="extra-period">2019 – 2021</span>
+        <p class="extra-desc">Served as School Prefect at Taxila Central College, Horana — a trusted leadership position developing responsibility, discipline, and communication.</p>
+      </div>
+      <div class="extra-card reveal reveal-d1">
+        <div class="extra-emoji">🚔</div>
+        <div class="extra-title">Police Life Saving Team</div>
+        <span class="extra-period">2016 – 2019 · Junior Member</span>
+        <p class="extra-desc">Junior Member of the Police Life Saving Team, participating in community safety programs and building values of discipline and teamwork.</p>
+      </div>
+      <div class="extra-card reveal reveal-d2">
+        <div class="extra-emoji">🦁</div>
+        <div class="extra-title">Leo Club — Campus Ambassador</div>
+        <span class="extra-period">2024 – Present · SLIIT</span>
+        <p class="extra-desc">Campus Ambassador for Leo Club at SLIIT. Guided telescope construction and engaged 500+ students in the "Vidu Hastha" astronomy workshop, promoting STEM and leadership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- LANGUAGES -->
+<section class="lang-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Languages</div>
+      <h2 class="section-title">Communication</h2>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇬🇧</div>
+        <div><div class="lang-name">English</div><div class="lang-level">Fluent</div></div>
+      </div>
+      <div class="lang-card reveal reveal-d1">
+        <div class="lang-flag">🇱🇰</div>
+        <div><div class="lang-name">Sinhala</div><div class="lang-level">Native</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REFERENCE -->
+<section class="ref-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Reference</div>
+      <h2 class="section-title">Professional Reference</h2>
+    </div>
+    <div class="ref-card reveal" style="margin-top:48px">
+      <div class="ref-avatar">DJ</div>
+      <div>
+        <div class="ref-name">Dineth Jayanga</div>
+        <div class="ref-role">Software Engineer at Expernetic</div>
+        <div class="ref-contact">
+          <a href="mailto:Dinethjayanga37@gmail.com">Dinethjayanga37@gmail.com</a>
+          <a href="tel:+94762050235">+94 76 205 0235</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner container">
+    <div class="footer-left">
+      <span class="footer-logo">Sithja<span>.</span>V</span>
+      <p>Cybersecurity Undergraduate · SLIIT<br>Horana, Sri Lanka 🇱🇰</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="work.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/sithija-vithanage" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/sithija-vithanage" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© 2025 Sithja Vithanage. All rights reserved.</span>
+    <span>sithijanilupul004@gmail.com</span>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('animated'); });
+  }, { threshold: 0.3 });
+  bars.forEach(b => barObs.observe(b));
+</script>
+</body>
+</html>

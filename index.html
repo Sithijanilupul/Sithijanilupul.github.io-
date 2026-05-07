@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sithja Vithanage — Cybersecurity Undergraduate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:120px 32px 100px;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(90px);pointer-events:none;animation:float 8s ease-in-out infinite}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,var(--accent)18,transparent 70%);right:-150px;top:0}
+.orb2{width:350px;height:350px;background:radial-gradient(circle,var(--accent3)20,transparent 70%);left:5%;bottom:80px;animation-delay:-3s}
+.orb3{width:250px;height:250px;background:radial-gradient(circle,var(--accent2)18,transparent 70%);right:25%;bottom:120px;animation-delay:-5s}
+@keyframes float{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-30px) scale(1.04)}}
+.hero-content{max-width:1200px;margin:0 auto;width:100%;position:relative;z-index:1}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:100px;padding:6px 16px 6px 8px;font-size:13px;font-weight:500;color:var(--text-muted);margin-bottom:36px;animation:fadeUp 0.8s ease both}
+.tag-dot{width:8px;height:8px;border-radius:50%;background:var(--accent3);box-shadow:0 0 0 3px var(--accent3)30;animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px var(--accent3)30}50%{box-shadow:0 0 0 7px var(--accent3)10}}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(52px,9vw,110px);line-height:0.92;letter-spacing:-3px;color:var(--text);margin-bottom:20px;animation:fadeUp 0.8s ease 0.1s both}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-name{font-family:'DM Serif Display',serif;font-size:clamp(28px,4vw,48px);color:var(--text-muted);letter-spacing:-1px;margin-bottom:24px;font-weight:400;animation:fadeUp 0.8s ease 0.15s both}
+.hero-sub{font-size:clamp(15px,2vw,18px);color:var(--text-muted);max-width:620px;line-height:1.75;font-weight:300;margin-bottom:52px;animation:fadeUp 0.8s ease 0.2s both}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.3s both}
+.hero-scroll{position:absolute;bottom:44px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-subtle);font-size:11px;letter-spacing:0.12em;text-transform:uppercase;animation:fadeUp 1s ease 0.6s both}
+.scroll-bar{width:1px;height:52px;background:linear-gradient(to bottom,var(--text-subtle),transparent);animation:scrollAnim 2s ease infinite}
+@keyframes scrollAnim{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* STATS */
+.stats-strip{padding:64px 0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.stat-cell{background:var(--bg2);padding:32px 40px;text-align:center;transition:background 0.2s}
+.stat-cell:hover{background:var(--surface)}
+.stat-num{font-family:'DM Serif Display',serif;font-size:52px;letter-spacing:-2px;line-height:1;color:var(--text);margin-bottom:6px}
+.stat-label{font-size:13px;color:var(--text-muted)}
+
+/* ABOUT PREVIEW */
+.about-preview{padding:120px 0}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-img{aspect-ratio:1;background:var(--surface2);border-radius:24px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-img-inner{font-family:'DM Serif Display',serif;font-size:120px;color:var(--text);opacity:0.08}
+.about-badge{position:absolute;bottom:24px;left:24px;right:24px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:12px}
+.badge-dot{width:9px;height:9px;border-radius:50%;background:var(--accent3);box-shadow:0 0 0 3px var(--accent3)25;animation:pulse 2s ease infinite;flex-shrink:0}
+.badge-text{font-size:13px;font-weight:600}
+.badge-sub{font-size:12px;color:var(--text-muted);margin-top:2px}
+.about-text h2{font-family:'DM Serif Display',serif;font-size:clamp(36px,4vw,52px);letter-spacing:-1.2px;line-height:1;margin-bottom:24px}
+.about-text h2 em{font-style:italic;color:var(--accent)}
+.about-text p{font-size:16px;color:var(--text-muted);line-height:1.75;font-weight:300;margin-bottom:16px}
+.about-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.chip{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:13px;font-weight:500;color:var(--text-muted);transition:border-color 0.2s,color 0.2s}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+
+/* FEATURED PROJECTS */
+.featured{padding:120px 0;background:var(--bg2)}
+.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform 0.35s cubic-bezier(0.34,1.2,0.64,1),box-shadow 0.35s,border-color 0.3s}
+.proj-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--accent)50}
+.proj-card.wide{grid-column:span 2}
+.proj-thumb{position:relative;overflow:hidden}
+.proj-card.wide .proj-thumb{height:300px}
+.proj-card:not(.wide) .proj-thumb{height:200px}
+.proj-thumb-bg{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:56px;transition:transform 0.4s}
+.proj-card:hover .proj-thumb-bg{transform:scale(1.06)}
+.proj-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:white;font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;opacity:0;transition:opacity 0.3s}
+.proj-card:hover .proj-overlay{opacity:1}
+.proj-body{padding:24px;flex:1;display:flex;flex-direction:column}
+.proj-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.proj-tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent);background:var(--accent)12;padding:3px 8px;border-radius:4px}
+.proj-name{font-family:'DM Serif Display',serif;font-size:24px;letter-spacing:-0.3px;margin-bottom:8px}
+.proj-desc{font-size:14px;color:var(--text-muted);line-height:1.6;font-weight:300;flex:1}
+.proj-foot{display:flex;align-items:center;justify-content:space-between;margin-top:18px;padding-top:16px;border-top:1px solid var(--border2)}
+.proj-year{font-size:12px;color:var(--text-subtle)}
+.proj-arrow{width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:14px;transition:background 0.2s,border-color 0.2s}
+.proj-card:hover .proj-arrow{background:var(--accent);border-color:var(--accent);color:white}
+
+/* SKILLS SECTION */
+.skills-preview{padding:120px 0}
+.skills-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:56px}
+.skill-cat{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:32px;transition:transform 0.3s,border-color 0.3s}
+.skill-cat:hover{transform:translateY(-4px);border-color:var(--accent)40}
+.skill-cat-icon{font-size:32px;margin-bottom:16px}
+.skill-cat-title{font-weight:600;font-size:16px;margin-bottom:16px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:7px}
+.skill-pill{background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:500;color:var(--text-muted)}
+
+/* CTA */
+.cta-strip{padding:120px 0}
+.cta-box{background:var(--text);color:var(--bg);border-radius:32px;padding:80px;text-align:center;position:relative;overflow:hidden}
+[data-theme="dark"] .cta-box{background:var(--surface);color:var(--text);border:1px solid var(--border)}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 110%,var(--accent)25,transparent 70%);pointer-events:none}
+.cta-title{font-family:'DM Serif Display',serif;font-size:clamp(40px,6vw,80px);line-height:0.95;letter-spacing:-2px;margin-bottom:20px;position:relative}
+.cta-sub{font-size:18px;opacity:0.6;font-weight:300;margin-bottom:48px;position:relative}
+.cta-btns{display:flex;gap:12px;justify-content:center;position:relative;flex-wrap:wrap}
+
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr}
+  .proj-grid{grid-template-columns:1fr}
+  .proj-card.wide{grid-column:span 1}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .skills-cats{grid-template-columns:1fr}
+  .section-header{flex-direction:column;align-items:flex-start;gap:20px}
+  .cta-box{padding:48px 28px}
+  .hero{padding:120px 20px 100px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">Sithja<span>.</span>V</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html">Projects</a></li>
+      <li><a href="experience.html">Experience</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="contact.html" class="btn-nav">Hire Me</a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <div class="toggle-thumb"><span id="toggleIcon">☀️</span></div>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-orb orb3"></div>
+  <div class="hero-content">
+    <div class="hero-tag"><span class="tag-dot"></span> Open to SOC Analyst & Security Internships</div>
+    <h1 class="hero-title">Sithja<br><em>Vithanage</em></h1>
+    <p class="hero-name">Cybersecurity Undergraduate · SLIIT</p>
+    <p class="hero-sub">Seeking cybersecurity internships and SOC analyst roles in Sri Lanka or remotely. Translating network security research, SIEM operations, vulnerability assessment, and secure development into real-world defense — based in Horana, Sri Lanka.</p>
+    <div class="hero-ctas">
+      <a href="work.html" class="btn-primary">View Projects →</a>
+      <a href="contact.html" class="btn-secondary">Download CV</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-bar"></div>Scroll</div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-cell reveal"><div class="stat-num">5</div><div class="stat-label">Projects Completed</div></div>
+      <div class="stat-cell reveal reveal-d1"><div class="stat-num">3</div><div class="stat-label">Certifications</div></div>
+      <div class="stat-cell reveal reveal-d2"><div class="stat-num">10+</div><div class="stat-label">Technologies</div></div>
+      <div class="stat-cell reveal reveal-d3"><div class="stat-num">2028</div><div class="stat-label">Graduating Year</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="about-preview">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img reveal">
+        <div class="about-img-inner">SV</div>
+        <div class="about-badge">
+          <div class="badge-dot"></div>
+          <div>
+            <div class="badge-text">Open to Opportunities</div>
+            <div class="badge-sub">SOC Analyst · Security Internships</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text reveal reveal-d1">
+        <div class="section-label">About Me</div>
+        <h2>Passionate about <em>cyber defence</em></h2>
+        <p>Cybersecurity undergraduate at SLIIT with a strong foundation in network security, threat analysis, and vulnerability assessment. Experienced with Linux, Wireshark, and Python for security-related tasks.</p>
+        <p>Completed certifications in cybersecurity and AI/ML, with a growing interest in Security Operations Center roles — including monitoring, incident response, and risk analysis. Known for analytical thinking and a structured approach to problem solving.</p>
+        <div class="about-chips">
+          <span class="chip">Linux</span><span class="chip">Wireshark</span><span class="chip">Python</span>
+          <span class="chip">Azure Sentinel</span><span class="chip">Java</span><span class="chip">TensorFlow</span>
+          <span class="chip">ISO 27001</span><span class="chip">Threat Analysis</span>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap">
+          <a href="about.html" class="btn-primary">More About Me →</a>
+          <a href="experience.html" class="btn-secondary">Experience</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PROJECTS -->
+<section class="featured">
+  <div class="container">
+    <div class="section-header reveal">
+      <div>
+        <div class="section-label">Selected Projects</div>
+        <h2 class="section-title">Featured Work</h2>
+      </div>
+      <a href="work.html" class="btn-secondary">View All →</a>
+    </div>
+    <div class="proj-grid">
+      <!-- Azure Sentinel -->
+      <a href="work.html" class="proj-card wide reveal">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0f1b4d,#1a3a8f)">🛡️</div>
+          <div class="proj-overlay" style="background:rgba(43,92,230,0.88)">View Project ↗</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Cyber Security</span><span class="proj-tag">Azure Sentinel</span><span class="proj-tag">SIEM</span><span class="proj-tag">PowerShell</span></div>
+          <div class="proj-name">Azure Sentinel RDP Attack Detection Lab</div>
+          <p class="proj-desc">Built a cloud SIEM lab on Azure Sentinel. Used PowerShell to parse Windows Event Logs, enriched attacker IPs with geolocation data, and visualized real-time RDP brute-force attacks on an interactive map dashboard.</p>
+          <div class="proj-foot"><span class="proj-year">April 2026 — Present</span><div class="proj-arrow">↗</div></div>
+        </div>
+      </a>
+      <!-- TCP Server -->
+      <a href="work.html" class="proj-card reveal">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#0d3326,#1a6b4a)">🔒</div>
+          <div class="proj-overlay" style="background:rgba(43,196,138,0.88)">View Project ↗</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag">Security</span><span class="proj-tag">C</span><span class="proj-tag">TCP/IP</span><span class="proj-tag">SHA-256</span></div>
+          <div class="proj-name">Secure Multiprocess TCP Server</div>
+          <p class="proj-desc">Multi-client TCP server in C with salted SHA-256 auth, session tokens, rate limiting, brute-force protection, and full audit logging. Supports 10+ concurrent connections.</p>
+          <div class="proj-foot"><span class="proj-year">March 2026 — Present</span><div class="proj-arrow">↗</div></div>
+        </div>
+      </a>
+      <!-- Pneumonia AI -->
+      <a href="work.html" class="proj-card reveal reveal-d1">
+        <div class="proj-thumb">
+          <div class="proj-thumb-bg" style="background:linear-gradient(135deg,#1a0f2e,#4a1a8a)">🫁</div>
+          <div class="proj-overlay" style="background:rgba(90,43,200,0.88)">View Project ↗</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags"><span class="proj-tag" style="color:var(--accent3);background:var(--accent3)12">AI / ML</span><span class="proj-tag" style="color:var(--accent3);background:var(--accent3)12">Python</span><span class="proj-tag" style="color:var(--accent3);background:var(--accent3)12">TensorFlow</span></div>
+          <div class="proj-name">Pneumonia Detection Using Deep Learning</div>
+          <p class="proj-desc">ResNet50 deep learning model detecting pneumonia from chest X-rays using CNN and transfer learning. Evaluated using accuracy, precision, recall, F1, and AUC with Grad-CAM visualization.</p>
+          <div class="proj-foot"><span class="proj-year">Jul – Oct 2025 · SLIIT</span><div class="proj-arrow">↗</div></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS PREVIEW -->
+<section class="skills-preview">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Technical Skills</div>
+      <h2 class="section-title">What I work with</h2>
+    </div>
+    <div class="skills-cats">
+      <div class="skill-cat reveal">
+        <div class="skill-cat-icon">🛡️</div>
+        <div class="skill-cat-title">Security & Tools</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Linux</span><span class="skill-pill">Wireshark</span>
+          <span class="skill-pill">Azure Sentinel</span><span class="skill-pill">Git</span>
+          <span class="skill-pill">Vulnerability Scanning</span><span class="skill-pill">ISO 27001</span>
+          <span class="skill-pill">Threat Analysis</span><span class="skill-pill">Risk Assessment</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal reveal-d1">
+        <div class="skill-cat-icon">💻</div>
+        <div class="skill-cat-title">Programming</div>
+        <div class="skill-pills">
+          <span class="skill-pill">Python</span><span class="skill-pill">Java</span>
+          <span class="skill-pill">C</span><span class="skill-pill">PowerShell</span>
+          <span class="skill-pill">HTML & CSS</span><span class="skill-pill">React</span>
+          <span class="skill-pill">SQL / MySQL</span><span class="skill-pill">R</span>
+        </div>
+      </div>
+      <div class="skill-cat reveal reveal-d2">
+        <div class="skill-cat-icon">🤖</div>
+        <div class="skill-cat-title">AI / ML & Frameworks</div>
+        <div class="skill-pills">
+          <span class="skill-pill">TensorFlow</span><span class="skill-pill">Pandas</span>
+          <span class="skill-pill">Deep Learning</span><span class="skill-pill">NLP</span>
+          <span class="skill-pill">Spring Boot</span><span class="skill-pill">Spring Security</span>
+          <span class="skill-pill">OOP</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="container">
+    <div class="cta-box reveal">
+      <h2 class="cta-title">Let's connect<br><em>and</em><br>collaborate</h2>
+      <p class="cta-sub">Open to cybersecurity internships, SOC analyst roles, and security projects in Sri Lanka or remotely.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn-cta-primary">✉️ Get in Touch</a>
+        <a href="work.html" class="btn-cta-secondary">View Projects</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner container">
+    <div class="footer-left">
+      <span class="footer-logo">Sithja<span>.</span>V</span>
+      <p>Cybersecurity Undergraduate · SLIIT<br>Horana, Sri Lanka 🇱🇰</p>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">Home</a><a href="about.html">About</a>
+      <a href="work.html">Projects</a><a href="experience.html">Experience</a><a href="contact.html">Contact</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://github.com/sithija-vithanage" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/sithija-vithanage" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <span>© 2025 Sithja Vithanage. All rights reserved.</span>
+    <span>sithijanilupul004@gmail.com</span>
+  </div>
+</footer>
+<script src="shared.js"></script>
+</body>
+</html>
