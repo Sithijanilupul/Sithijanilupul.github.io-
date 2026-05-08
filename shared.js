@@ -1,4 +1,4 @@
-/* shared.js — Sithja Vithanage Portfolio */
+/* shared.js — Sithija Vithanage Portfolio */
 (function () {
   const html = document.documentElement;
   const toggle = document.getElementById('themeToggle');
