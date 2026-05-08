@@ -3,7 +3,7 @@
   const html = document.documentElement;
   const toggle = document.getElementById('themeToggle');
   const icon = document.getElementById('toggleIcon');
-  const saved = localStorage.getItem('sithja-theme') || 'light';
+  const saved = localStorage.getItem('sithija-theme') || 'light';
   html.setAttribute('data-theme', saved);
   if (icon) icon.textContent = saved === 'dark' ? '🌙' : '☀️';
   if (toggle) {
@@ -11,7 +11,7 @@
       const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       html.setAttribute('data-theme', next);
       if (icon) icon.textContent = next === 'dark' ? '🌙' : '☀️';
-      localStorage.setItem('sithja-theme', next);
+      localStorage.setItem('sithija-theme', next);
     });
   }
   const observer = new IntersectionObserver((entries) => {
